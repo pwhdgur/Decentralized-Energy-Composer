@@ -1,0 +1,203 @@
+
+<div class="modal fade" id="addResidentModal" tabindex="-1" role="dialog" aria-labelledby="addResidentModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="addResidentModalLabel">소유자 추가</h4>
+      </div>
+      <form [formGroup]="myForm">
+        <div class="modal-body">
+            <div class="form-group text-left">
+              <label for="residentID">소유자 ID</label>
+                <input formControlName="residentID" type="text" class="form-control">
+                </div>      
+            <div class="form-group text-left">
+              <label for="firstName">성</label>  
+                <input formControlName="firstName" type="text" class="form-control">          
+            </div>
+          
+            <div class="form-group text-left">
+              <label for="lastName">이름</label>  
+                <input formControlName="lastName" type="text" class="form-control">          
+            </div>
+
+            <div class="form-group text-left">
+              <label for="coinsValue">코인</label>  
+                <input formControlName="coinsValue" type="text" class="form-control">          
+            </div>
+
+            <div class="form-group text-left">
+              <label for="energyValue">현재 전력량</label>  
+                <input formControlName="energyValue" type="text" class="form-control">          
+            </div>
+
+            <div class="form-group text-left">
+              <label for="energyUnits">전력 단위</label>  
+              
+              <div>
+              <select name="energyUnits" formControlName="energyUnits">
+                <option value="kwh">kWh</option>                
+              </select>
+              </div>       
+            </div>
+
+            <div class="form-group text-left">
+              <label for="cashValue">현금</label>  
+                <input formControlName="cashValue" type="text" class="form-control">          
+            </div>
+
+            <div class="form-group text-left">
+              <label for="cashCurrency">현금 단위</label>  
+              
+              <div>
+              <select name="cashCurrency" formControlName="cashCurrency">
+                <option value="WON">원화</option>                
+              </select>
+              </div>        
+            </div>
+
+                
+        </div>
+        <div class="modal-footer">
+          <button (click)="addResident(myForm);" type="submit" class="btn btn-success" data-dismiss="modal">제출</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">종료</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="updateResidentModal" tabindex="-1" role="dialog" aria-labelledby="updateResidentModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="updateResidentModalLabel">자산 업데이트</h4>
+      </div>
+      <form [formGroup]="myForm">
+        <div class="modal-body">
+            <div class="form-group text-left">
+              <label for="residentID">ID</label>
+                <input [ngModel]="residentID"formControlName="residentID" type="text" class="form-control">            
+            </div>          
+            <div class="form-group text-left">
+              <label for="firstName">성</label>
+                <input [ngModel]="firstName"formControlName="firstName" type="text" class="form-control">              
+            </div>          
+            <div class="form-group text-left">
+              <label for="lastName">이름</label>
+                  <textarea [ngModel]="lastName" formControlName="lastName" class="form-control" rows="3"></textarea>
+            </div>
+              
+        </div>
+        <div class="modal-footer">
+          <button (click)="updateResident(myForm)" type="submit" class="btn btn-success" data-dismiss="modal">제출</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">종료</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="deleteResidentModal" tabindex="-1" role="dialog" aria-labelledby="deleteResidentModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="deleteResidentModalLabel">자산 삭제</h4>
+      </div>
+      <form [formGroup]="myForm" (ngSubmit)="deleteResident()">
+        <div class="modal-body">
+          현재 자산 삭제를 진행하시겠습니까?
+        </div>
+        <div class="modal-footer">
+          <button (click)="deleteResident()" type="submit" class="btn btn-danger" data-dismiss="modal">예</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">아니오</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="container">
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+		<strong>Error:</strong> {{errorMessage}}
+	</div>
+  <div class="row">
+   
+      <h1 class="heading">소유자 리스트 </h1>
+  </div>
+
+ <div class="row">
+    <div class="col-md-12 text-right">
+      <button (click)="resetForm()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addResidentModal">소유자 추가</button>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered table-responsive table-hover">
+        <thead class="thead">
+          <tr class="thead-cols">
+            
+                <th class="bc">ID</th>
+            
+                <th class="bc">성</th>
+            
+                <th class="bc">이름</th>  
+
+                <th class="bc">코인</th>  
+
+                <th class="bc">현재 전력량</th>
+
+                <th class="bc">전력 단위</th>
+
+                <th class="bc">현금</th>
+
+                <th class="bc">현금 단위</th>
+
+                <th class="bc">상태</th>       
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let resident of allResidents">
+          
+                <td>{{resident.residentID}}</td>
+            
+                <td>{{resident.firstName}}</td>
+            
+                <td>{{resident.lastName}}</td>
+
+                <td>{{resident.coinsValue}}</td>
+
+                <td>{{resident.energyValue}}</td>
+
+                <td>{{resident.energyUnits}}</td>
+
+                <td>{{resident.cashValue}}</td>
+
+                <td>{{resident.cashCurrency}}</td>
+           
+            <td>
+
+              <button (click)="getForm(resident.residentID);" type="button" class="btn btn-success" data-toggle="modal" data-target="#updateResidentModal">수정</button>
+
+              <button (click)="setId(resident.residentID);" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteResidentModal">삭제</button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

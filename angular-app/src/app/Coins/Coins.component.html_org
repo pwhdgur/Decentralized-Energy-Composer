@@ -1,0 +1,142 @@
+<div class="modal fade" id="addAssetModal" tabindex="-1" role="dialog" aria-labelledby="addAssetModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="addAssetModalLabel">자산 추가</h4>
+      </div>
+      <form [formGroup]="myForm">
+        <div class="modal-body">
+
+            <div class="form-group text-left">
+              <label for="coinsID">코인 ID</label>
+                <input formControlName="coinsID" type="text" class="form-control">              
+            </div>
+          
+            <div class="form-group text-left">
+              <label for="value">값</label>
+                <input formControlName="value" type="number" step='any' class="form-control">              
+            </div>
+          
+            <div class="form-group text-left">
+              <label for="ownerID">소유자 ID</label>
+                <input formControlName="ownerID" type="text" class="form-control">              
+            </div>
+          
+            <div class="form-group text-left">
+              <label for="ownerEntity">소유자 주체</label>
+                  <textarea formControlName="ownerEntity" class="form-control" rows="3"></textarea>
+            </div> 
+                         
+        </div>
+        <div class="modal-footer">
+          <button (click)="addAsset(myForm);" type="submit" class="btn btn-success" data-dismiss="modal">제출</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">완료</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="updateAssetModal" tabindex="-1" role="dialog" aria-labelledby="updateAssetModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="updateAssetModalLabel">자산 업데이트</h4>
+      </div>
+      <form [formGroup]="myForm">
+        <div class="modal-body">
+
+            <div class="form-group text-left">
+              <label for="coinsID">코인 ID</label>
+                <input [ngModel]="coinsID"formControlName="coinsID" type="text" class="form-control">              
+            </div>
+          
+            <div class="form-group text-left">
+              <label for="value">값</label>
+                <input [ngModel]="value" formControlName="value" type="number" step='any' class="form-control">              
+            </div>
+          
+            <div class="form-group text-left">
+              <label for="ownerID">소유자 ID</label>
+                <input [ngModel]="ownerID"formControlName="ownerID" type="text" class="form-control">              
+            </div>
+          
+            <div class="form-group text-left">
+              <label for="ownerEntity">소유자 주체</label>
+                  <textarea [ngModel]="ownerEntity" formControlName="ownerEntity" class="form-control" rows="3"></textarea>              
+            </div>       
+        </div>
+        <div class="modal-footer">
+          <button (click)="updateAsset(myForm)" type="submit" class="btn btn-success" data-dismiss="modal">제출</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">종료</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="deleteAssetModal" tabindex="-1" role="dialog" aria-labelledby="deleteAssetModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="deleteAssetModalLabel">자산 삭제</h4>
+      </div>
+      <form [formGroup]="myForm" (ngSubmit)="deleteAsset()">
+        <div class="modal-body">
+          현재 자산 삭제를 진행하시겠습니까?
+        </div>
+        <div class="modal-footer">
+          <button (click)="deleteAsset()" type="submit" class="btn btn-danger" data-dismiss="modal">예</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">아니오</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+	<div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+		<strong>Error:</strong> {{errorMessage}}
+	</div>
+  <h1 id='assetName'>코인 자산</h1>
+  <div class="row">    
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered table-responsive table-hover">
+        <thead class="thead">
+          <tr class="thead-cols">
+            
+                <th class="bc">코인 ID</th>                            
+            
+                <th class="bc">소유자 ID</th>
+            
+                <th class="bc">소유자 주체</th>
+
+                <th class="bc">값</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let asset of allAssets">
+
+            
+                <td>{{asset.coinsID}}</td>
+                                        
+                <td>{{asset.ownerID}}</td>
+            
+                <td>{{asset.ownerEntity}}</td>
+
+                <td>{{asset.value}}</td>            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

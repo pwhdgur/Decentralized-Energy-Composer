@@ -1,0 +1,83 @@
+
+
+<div class="container">
+
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+		<strong>Error:</strong> {{errorMessage}}
+	</div>
+
+  <div class="row">
+      <h1> 소유자 <=> 전력회사 </h1>  
+  </div>
+
+  <div class="row">
+    <br>
+  </div>
+
+  <div class="row RR">
+    <div *ngIf="transactionFrom" class="col-md-offset-3 col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading"><strong> 거래 정보 </strong></div>
+        <div class="panel-body">        
+          <form [formGroup]="myForm">
+
+            <p ><strong>비율: {{utilityCoinsPerEnergy}}  코인 / kwh </strong></p>
+
+            <p>상태: 
+              <select name="actions" formControlName="action">
+                <option value="buyEnergy" >(Buy)전력회사로부터 전력(kwh)을 사옴</option>
+                <option value="sellEnergy">(Sell)전력회사에게 전력(kwh)을 팔음</option>
+              </select>
+            </p>
+            
+            <p>소유자: 
+              <select name="residents" formControlName="formResidentID">
+                <option *ngFor="let resident of allResidents" value="{{resident.residentID}}">{{resident.residentID}}</option>
+              </select>
+            </p>           
+              
+
+            <p>전력 회사:
+              <select name="utilityCompanys" formControlName="formUtilityID" >
+                <option *ngFor="let utilityCompany of allUtilityCompanys" value="{{utilityCompany.utilityID}}">{{utilityCompany.utilityID}}</option>
+              </select>
+            </p>
+
+            <p>전력량(kwh):
+              <input formControlName="value" type="number" step='any' class="form-control inlineInput">
+            </p>
+
+                       
+            
+            </form>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!transactionFrom" class="col-md-offset-3 col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading"><strong>거래 실행</strong></div>
+        <div class="panel-body">
+        <p>시간 간격 : 1:00 pm - 2:00 pm</p>
+          <form [formGroup]="myForm">
+            <p>거래 트랜젝션 ID: {{transactionID}}</p>            
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">  
+    <div *ngIf="transactionFrom" class="col-md-offset-4 col-md-4">
+      <button (click)="execute(form);" type="button" class="btn btn-success" data-toggle="modal" >거래 실행</button>	  
+    </div>
+  </div>
+
+  <div class="row">
+    <br>
+    <br>
+  </div>
+
+
+</div>

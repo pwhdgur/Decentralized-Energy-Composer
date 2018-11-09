@@ -1,0 +1,72 @@
+<nav class="navbar navbar-inverse navbar2">
+  <div class="container-fluid">
+    <div class="navbar-header">
+<!--      
+	<a class="navbar-brand navfont" href="#">Decentralized Energy</a>
+-->
+        <a class="navbar-brand navfont" href="#">데모 : 전력에너지-코인 거래</a>  
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+
+        <li class="dropdown navfontAbout">
+            <a class="dropdown-toggle navfont" data-toggle="dropdown" href="#">거래내역 정보
+              <span class="caret navfont"></span></a>
+            <ul class="dropdown-menu">
+              <!--
+              <li><a [routerLink]="['/About']">About</a></li>
+              -->
+	      <li><a [routerLink]="['/AllTransactions']">블록체인</a></li>              
+            </ul>
+          </li>
+
+      <li class="dropdown">
+        <a class="dropdown-toggle navfont" data-toggle="dropdown" href="#">참가자
+          <span class="caret navfont"></span></a>
+        <ul class="dropdown-menu">
+          
+          <li><a [routerLink]="['/Resident']">소유자</a></li>
+          <li><a [routerLink]="['/Bank']">은행</a></li>
+          <li><a [routerLink]="['/UtilityCompany']">전력회사</a></li>
+ 
+        </ul>
+      </li>
+
+
+      <li class="dropdown">
+        <a class="dropdown-toggle navfont" data-toggle="dropdown" href="#">트랜젝션
+          <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
+          <li><a [routerLink]="['/TransactionRR']">소유자 <=> 소유자</a></li>
+          <li><a [routerLink]="['/TransactionRU']">소유자 <=> 전력회사</a></li>
+          <li><a [routerLink]="['/TransactionRB']">소유자 <=> 은행</a></li>
+ 
+        </ul>
+      </li>
+
+
+      <li class="dropdown">
+        <a class="dropdown-toggle navfont" data-toggle="dropdown" href="#">자산
+          <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
+          <li><a [routerLink]="['/Coins']">코인</a></li>
+          
+          <li><a [routerLink]="['/Energy']">전력에너지</a></li>
+
+          <li><a [routerLink]="['/Cash']">현금</a></li>
+          
+        </ul>
+      </li>
+
+      
+
+    </ul>
+  </div>
+</nav>
+
+<div class = "bodybackground">
+  <router-outlet></router-outlet>
+</div>
+
+

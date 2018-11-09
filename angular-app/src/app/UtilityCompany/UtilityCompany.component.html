@@ -1,0 +1,164 @@
+
+<div class="modal fade" id="addUtilityCompanyModal" tabindex="-1" role="dialog" aria-labelledby="addUtilityCompanyModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="addUtilityCompanyModalLabel">전력회사 추가</h4>
+      </div>
+      <form [formGroup]="myForm">
+        <div class="modal-body">
+            <div class="form-group text-left">
+              <label for="utilityID">ID</label>
+                <input formControlName="utilityID" type="text" class="form-control">
+                </div>      
+            <div class="form-group text-left">
+              <label for="name">전력회사명</label>  
+                <input formControlName="name" type="text" class="form-control">          
+            </div>
+                      
+            <div class="form-group text-left">
+              <label for="coinsValue">코인</label>  
+                <input formControlName="coinsValue" type="text" class="form-control">          
+            </div>
+
+            <div class="form-group text-left">
+              <label for="energyValue">전력량</label>  
+                <input formControlName="energyValue" type="text" class="form-control">          
+            </div>
+
+            <div class="form-group text-left">
+              <label for="energyUnits">전력 단위</label> 
+              
+              <div>
+              <select name="energyUnits" formControlName="energyUnits">
+                <option value="kwh">kWh</option>                
+              </select>
+              </div>              
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button (click)="addUtilityCompany(myForm);" type="submit" class="btn btn-success" data-dismiss="modal">제출</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">종료</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="updateUtilityCompanyModal" tabindex="-1" role="dialog" aria-labelledby="updateUtilityCompanyModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="updateUtilityCompanyModalLabel">자산 업데이트</h4>
+      </div>
+      <form [formGroup]="myForm">
+        <div class="modal-body">
+            <div class="form-group text-left">
+              <label for="utilityID">ID</label>
+                <input [ngModel]="utilityID"formControlName="utilityID" type="text" class="form-control">            
+            </div>          
+            <div class="form-group text-left">
+              <label for="name">전력회사명</label>
+                <input [ngModel]="name"formControlName="name" type="text" class="form-control">              
+            </div>                                   
+        </div>
+        <div class="modal-footer">
+          <button (click)="updateUtilityCompany(myForm)" type="submit" class="btn btn-success" data-dismiss="modal">제출</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">종료</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="deleteUtilityCompanyModal" tabindex="-1" role="dialog" aria-labelledby="deleteUtilityCompanyModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="deleteUtilityCompanyModalLabel">자산 삭제</h4>
+      </div>
+      <form [formGroup]="myForm" (ngSubmit)="deleteUtilityCompany()">
+        <div class="modal-body">
+          현재 자산 삭제를 진행하시겠습니까?
+        </div>
+        <div class="modal-footer">
+          <button (click)="deleteUtilityCompany()" type="submit" class="btn btn-danger" data-dismiss="modal">예</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">아니오</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="container">
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+		<strong>Error:</strong> {{errorMessage}}
+	</div>
+  <div class="row">
+      <h1 class="heading">전력회사 리스트 </h1>  
+  </div><!-- /row -->
+
+ <div class="row">
+    <div class="col-md-12 text-right">
+      <button (click)="resetForm()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUtilityCompanyModal">전력회사 추가</button>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-bordered table-responsive table-hover">
+        <thead class="thead">
+          <tr class="thead-cols">
+            
+                <th class="bc">ID</th>
+            
+                <th class="bc">전력회사명</th>            
+
+                <th class="bc">코인</th>  
+
+                <th class="bc">전력량</th>
+
+                <th class="bc">전력 단위</th>
+
+                <th class="bc">상태</th>       
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let utilityCompany of allUtilityCompanys">
+          
+                <td>{{utilityCompany.utilityID}}</td>
+            
+                <td>{{utilityCompany.name}}</td>
+
+                <td>{{utilityCompany.coinsValue}}</td>
+
+                <td>{{utilityCompany.energyValue}}</td>
+
+                <td>{{utilityCompany.energyUnits}}</td>
+           
+            <td>
+
+              <button (click)="getForm(utilityCompany.utilityID);" type="button" class="btn btn-success" data-toggle="modal" data-target="#updateUtilityCompanyModal">수정</button>
+
+              <button (click)="setId(utilityCompany.utilityID);" type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteUtilityCompanyModal">삭제</button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

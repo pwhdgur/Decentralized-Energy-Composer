@@ -1,0 +1,99 @@
+
+
+<div class="container">
+  <div class="row">  
+     <h1 class="heading">전력에너지-코인 거래</h1>
+  </div> 
+
+  <div class="row">
+    <br>
+  </div> 
+<!--
+  <div class="row bodytext">       
+      <div class="col-md-12">
+        <p class=""> This Blockchain application demonstrates energy sharing on a network among 'Residents' on a grid. The energy trade is based on exchanging coins for energy provided. The network also includes 'Utility Companies' to trade excess energy with or obtain energy from, and 'Banks' to exchange cash (fiat money) for coins.  </p>
+        <p class=""> Find more detail <a [routerLink]="['/About']" > about the application. </a> </p>
+
+      </div>
+    </div> 
+-->
+  <div class="row">
+    <br>
+  </div> 
+
+  <div class="row">
+    <h4> 1단계 - 참가 구성원 추가 및 업데이트 </h4>
+  </div>
+
+  <div class="row">
+<!--
+    <div class="participant col-md-4">
+      <p> <strong>Residents</strong> own three assets: Energy, Coins and Cash. They can trade with fellow residents, banks, and utility companies.</p>      
+      <a [routerLink]="['/Resident']" class=participantButton>Residents</a> 
+    </div>      
+-->
+    <div class="participant col-md-3" style="float: none; margin: 0 auto;">
+      <p></p>
+      <p> <strong>소유자 자산</strong> </p>
+      <p> (전력에너지, 코인, 현금) </p>
+      <a [routerLink]="['/Resident']" class=participantButton>소유자</a>
+    </div>
+   
+    <div class="participant col-md-3" style="float: none; margin: 0 auto;">
+      <p></p>
+      <p> <strong>은행 자산</strong> </p>
+      <p> (코인, 현금) </p>
+      <a [routerLink]="['/Bank']" class="participantButton">은행</a>
+    </div>   
+
+    <div class="participant col-md-3" style="float: none; margin: 0 auto;">
+      <p></p>
+      <p> <strong>전력회사 자산</strong> </p>
+      <p> (전력에너지, 코인) </p>
+      <a [routerLink]="['/UtilityCompany']" class="participantButton">전력 회사</a>
+    </div> 
+  
+  </div> 
+
+  <div class="row">
+    <br>
+  </div> 
+
+
+  <div class="row">
+    <h4> 2단계 - 전력거래 실행 </h4>
+  </div> 
+
+  <div class="row"> 
+        
+    <div class="participant col-md-3" style="float: none; margin: 0 auto;">
+      <p></p>
+      <p> 소유자간의 거래 트랜젝션 </p>
+      <p> (exchanging Coins for Energy) </p>
+      <a [routerLink]="['/TransactionRR']" class=participantButton>소유자 <=> 소유자</a> 
+    </div>           
+
+    <div class="participant col-md-3" style="float: none; margin: 0 auto;">
+      <p></p>
+      <p> 소유자와 은행간의 거래 트랜젝션 </p>
+      <p> (exchanging Coins for Cash) </p>
+      <a [routerLink]="['/TransactionRB']" class="participantButton">소유자 <=> 은행</a>
+    </div> 
+    
+    <div class="participant col-md-3" style="float: none; margin: 0 auto;">
+      <p></p>
+      <p> 소유자와 전력회사간의 거래 트랜잭션 </p>
+      <p> (exchanging Coins for Energy) </p>
+      <a [routerLink]="['/TransactionRU']" class="participantButton">소유자 <=> 전력회사</a>
+    </div>   
+    
+  </div> 
+
+  <div class="row">
+    <br>
+  </div> 
+  <div class="row">
+    <br>
+  </div> 
+
+</div>
